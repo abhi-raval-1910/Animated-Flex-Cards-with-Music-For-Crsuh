@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Animated Flex Cards with Music For Crsuh</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <!-- Card 1 -->
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card" data-music="music1.mp3">
+                <div class="video-wrapper">
+                    <video src="video1.mp4" muted autoplay loop></video>
+                </div>
+                <div class="row">
+                    <div class="icon">1</div>
+                    <div class="description">
+                        <!-- <h4>Card 1</h4> -->
+                        <p>Teri aankhon ka jadoo, sabko bechain kar jaaye,<br>terii khubsurati pe chaand bhi sharma jaaye. 🌟</p>
+                    </div>
+                </div>
+            </label>
+            <!-- Card 2 -->
+            <input type="radio" name="slide" id="c2">
+            <label for="c2" class="card" data-music="music2.mp3">
+                <div class="video-wrapper">
+                    <video src="video2.mp4" muted autoplay loop></video>
+                </div>
+                <div class="row">
+                    <div class="icon">2</div>
+                    <div class="description">
+                        <!-- <h4>Card 2</h4> -->
+                        <p>Teri bhuri aankhon👁👁 mein ek duniya🌍 basi hai,<br>Jahan sapne sajte hain, khushiyaan😊 hansi hai.❤️‍🔥<br>Inki chamak✨ se roshan hota har jahaan☺️,<br>Jaise subah ki roshni le aaye naya samaaa✨.</p>
+                    </div>
+                </div>
+            </label>
+            <!-- Card 3 -->
+            <input type="radio" name="slide" id="c3">
+            <label for="c3" class="card" data-music="music3.mp3">
+                <div class="video-wrapper">
+                    <video src="video3.mp4" muted autoplay loop></video>
+                </div>
+                <div class="row">
+                    <div class="icon">3</div>
+                    <div class="description">
+                        <!-- <h4>Card 3</h4> -->
+                        <p>Tere chehre ki raunak, jaise khilte gulaabon ki bahaar,<br>terii muskurahat se saja mera sansaar. 🌸</p>
+                    </div>
+                </div>
+            </label>
+            <!-- Card 4 -->
+            <input type="radio" name="slide" id="c4">
+            <label for="c4" class="card" data-music="music4.mp3">
+                <div class="video-wrapper">
+                    <video src="video4.mp4" muted autoplay loop></video>
+                </div>
+                <div class="row">
+                    <div class="icon">4</div>
+                    <div class="description">
+                        <!-- <h4>Card 4</h4> -->
+                        <p>Tera pyaar hai zindagi ka noor,<br>tu hai meri duniya ka sabse khoobsurat soorur. 🌺</p>
+                    </div>
+                </div>
+            </label>
+            <!-- Card 5 -->
+            <input type="radio" name="slide" id="c5">
+            <label for="c5" class="card" data-music="music5.mp3">
+                <div class="video-wrapper">
+                    <video src="video5.mp4" muted autoplay loop></video>
+                </div>
+                <div class="row">
+                    <div class="icon">5</div>
+                    <div class="description">
+                        <!-- <h4>Card 5</h4> -->
+                        <p>Teri khoobsurti ek naghma, ek pyara sa geet, 🎵<br>Tu hi hai meri duniya, tu hi mera meet. 💕<br>Tere chehre ki chamak, jaise subah ki roshni, 🌅<br>Tere saath har pal lage, ek madhur preet. 💞</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
+    <!-- Music Play Button -->
+    <button id="music-button" class="music-button">🎵</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
