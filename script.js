@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const musicButton = document.getElementById("music-button");
     const cards = document.querySelectorAll(".card");
-    let currentAudio = new Audio();
-    let isPlaying = false; // Track if music is currently playing
 
-    // Preload all audio files and set them to loop
-    const audioFiles = {
+    let audioFiles = {
         "music1.mp3": new Audio("music1.mp3"),
         "music2.mp3": new Audio("music2.wav"),
         "music3.mp3": new Audio("music3.mp3"),
@@ -13,51 +10,62 @@ document.addEventListener("DOMContentLoaded", () => {
         "music5.mp3": new Audio("music5.mp3")
     };
 
-    Object.values(audioFiles).forEach(audio => {
-        audio.loop = true; // Set all audios to loop
-    });
+    let currentAudio = null;
+    let isPlaying = false;
 
-    // Function to play music based on the selected card
-    function playMusic(musicSrc) {
-        if (currentAudio.src !== audioFiles[musicSrc].src) { // Check if new music needs to be played
-            currentAudio.pause(); // Pause currently playing music
-            currentAudio = audioFiles[musicSrc]; // Load the preloaded music
-            currentAudio.currentTime = 0; // Reset to start
-            currentAudio.play(); // Play the new music
+    // Add initial cross icon class to show muted state
+    musicButton.classList.add("music-icon-muted");
+
+    function toggleMusic(musicSrc) {
+        if (!currentAudio || currentAudio.src !== audioFiles[musicSrc].src) {
+            // Stop any currently playing audio
+            if (currentAudio) currentAudio.pause();
+            
+            // Play new audio
+            currentAudio = audioFiles[musicSrc];
+            currentAudio.play();
+            isPlaying = true;
+            musicButton.classList.remove("music-icon-muted");
+            musicButton.classList.add("music-icon-playing");
+        } else {
+            // Pause or resume the same audio
+            if (isPlaying) {
+                currentAudio.pause();
+                isPlaying = false;
+                musicButton.classList.remove("music-icon-playing");
+                musicButton.classList.add("music-icon-muted");
+            } else {
+                currentAudio.play();
+                isPlaying = true;
+                musicButton.classList.remove("music-icon-muted");
+                musicButton.classList.add("music-icon-playing");
+            }
         }
     }
 
-    // Play button to start or pause the music initially
     musicButton.addEventListener("click", () => {
         const selectedCard = document.querySelector("input[name='slide']:checked + label");
-        const musicSrc = selectedCard.getAttribute("data-music");
-
-        if (!isPlaying) {
-            playMusic(musicSrc); // Start playing music when the button is first clicked
-            isPlaying = true; // Music is now playing
-        } else {
-            currentAudio.pause(); // Pause if already playing
-            isPlaying = false; // Music is now paused
+        const musicSrc = selectedCard ? selectedCard.getAttribute("data-music") : null;
+        
+        if (musicSrc) {
+            toggleMusic(musicSrc);
         }
     });
 
-    // Auto change music when switching between videos
+    // Play music when a card is clicked
     cards.forEach(card => {
         card.addEventListener("click", () => {
             const musicSrc = card.getAttribute("data-music");
-            if (isPlaying) {
-                playMusic(musicSrc); // Automatically change music when video changes
-            }
+            toggleMusic(musicSrc);
         });
     });
 
-    // Ensure music changes when switching between videos by radio button change
     document.querySelectorAll("input[name='slide']").forEach(radio => {
         radio.addEventListener("change", () => {
             if (isPlaying) {
                 const selectedCard = document.querySelector("input[name='slide']:checked + label");
                 const musicSrc = selectedCard.getAttribute("data-music");
-                playMusic(musicSrc); // Change music when the selected radio button changes
+                toggleMusic(musicSrc);
             }
         });
     });
